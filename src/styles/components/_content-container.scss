@@ -1,0 +1,33 @@
+.content-container {
+    margin: 0 auto;
+    padding: 0 $m-size;
+    max-width: 80rem;
+}
+
+.content-navbar {
+    padding: $m-size;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.content-noticebox {
+    margin: 0 auto;
+    max-width: 60rem;
+    padding: $s-size;
+    text-align: center;
+}
+
+.content-infobox {
+    padding: $s-size;
+    outline-style: solid;
+    outline-width: 1px;
+}
+
+.content-container__title
+{
+    padding-bottom: $m-size;
+    padding-top: $m-size;
+
+    font-size: $l-size;
+}

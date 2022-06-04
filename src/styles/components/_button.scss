@@ -1,0 +1,31 @@
+.button {
+    font-size: $m-size;
+    font-weight: 300;
+    padding: $s-size;
+    background-color: $buttonBlue;
+    color: $buttonTextColor;
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1;
+    box-shadow: none;
+    border: none;
+
+}
+
+.button--secondary {
+    background-color: $buttonGray;
+}
+
+.button--link {
+    background: none;
+    color: $buttonTextColor;
+}
+
+.button--spotify
+{
+    @extend .button;
+    background-color: $spotifyColor;
+    color: black;
+    font-weight: bold;
+    border-radius: 15px;
+}

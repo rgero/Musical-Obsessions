@@ -1,0 +1,47 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    > * {
+        margin-bottom: $m-size;
+    }
+    max-width: 40rem;
+    margin: 0 auto;
+}
+
+.form__error {
+    margin: 0 0 $m-size 0;
+    font-style: italic;
+}
+
+.form__input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: $s-size;
+    align-items: center;
+}
+
+.form__header
+{
+    align-items: left;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+
+.form__importData
+{
+  @extend .form;
+  padding-top: $l-size;
+    
+}
