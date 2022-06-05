@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 //Components
 import NotFoundPage from '../components/NotFoundPage';
 import IndexPage from '../components/IndexPage';
+import PlaylistPage from '../components/PlaylistPage';
 
 export const history = require('history').createBrowserHistory();
 
@@ -12,6 +13,7 @@ const AppRouter = () => (
     <div>
       <Routes>
         <Route path='/' element={<IndexPage/>} exact={true}/>
+        <Route path="/options" element={<PlaylistPage/>} exact={true} />
         <Route path="*" element={<NotFoundPage/>}/>    
       </Routes>
     </div>
