@@ -17,7 +17,6 @@ export class IndexPage extends React.Component
         this.authURL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
 
         this.parseToken = this.parseToken.bind(this);
-
         this.state = {
             token : this.props.token ? this.props.token : ""
         }
@@ -57,11 +56,8 @@ export class IndexPage extends React.Component
                 <div>
                     This purpose of this website is to create a Spotify Playlist of your most listened songs over the a set period of time.
                 </div>
-                <div>
+                <div className="content-center">
                     <a className='button--spotify' href={this.authURL}>Login to Spotify!</a>
-                </div>
-                <div>
-                    The Token is here: {this.state.token};
                 </div>
               </div>
             </div>

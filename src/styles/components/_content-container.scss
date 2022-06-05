@@ -26,8 +26,13 @@
 
 .content-container__title
 {
-    padding-bottom: $m-size;
-    padding-top: $m-size;
+    padding: $m-size 0;
+
 
     font-size: $l-size;
+}
+
+.content-center{
+    margin: auto;
+    text-align: center;
 }
