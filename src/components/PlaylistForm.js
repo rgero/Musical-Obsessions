@@ -1,6 +1,8 @@
 import React from 'react'
 import ErrorModal from './ErrorModal';
 
+import SpotifyInteractor from "../tools/SpotifyInteractor";
+
 export default class PlaylistForm extends React.Component
 {
     constructor(props)
@@ -16,6 +18,9 @@ export default class PlaylistForm extends React.Component
             name : this.props.name ? this.props.name : "Hot Songs",
             duration : this.props.duration ? this.props.duration : "short_term",
             songCount : this.props.songCount ? this.props.songCount : 20,
+            visibility: this.props.visibility ? this.props.visibility : true,
+            description: this.props.description ? this.props.description : "The hottest of songs",
+            token : this.props.token ? this.props.token : "",
         }
     }
 
@@ -43,7 +48,7 @@ export default class PlaylistForm extends React.Component
         }))
     }
 
-    onSubmit(e){
+    async onSubmit(e){
         e.preventDefault();
 
         //Validate Form;
@@ -55,11 +60,21 @@ export default class PlaylistForm extends React.Component
         
         if( currentError === ''){
             this.setState({error: currentError})
-            this.props.onSubmit({
-                name: this.state.name,
+
+            var options = {
+                token: this.state.token,
                 duration: this.state.duration,
-                songCount : this.state.songCount
-            });
+                count: this.state.songCount,
+                playlistName: this.state.playlistName,
+                visibility: this.state.visibility,
+                description: this.state.description
+            }
+
+            var interactor = new SpotifyInteractor(options);
+            await interactor.GetUserID();
+            await interactor.CreatePlaylist();
+
+
         } else {
             this.setState({error: currentError})
         }
@@ -68,49 +83,49 @@ export default class PlaylistForm extends React.Component
     render()
     {
         return (
-            <form className='form' onSubmit={this.onSubmit}>
-                    {this.state.error !== '' && <ErrorModal errorMessage={this.state.error} clearError={this.clearError} />}
+            <div className="content-container">
+                <form className='form' onSubmit={this.onSubmit}>
+                        {this.state.error !== '' && <ErrorModal errorMessage={this.state.error} clearError={this.clearError} />}
 
-                    <div className = 'form__input'>
-                        <label className = 'form__label'>Playlist Name</label>
-                        <input
-                            type='text'
-                            className='text-input'
-                            placeholder='Hot Songs'
-                            autoFocus
-                            value={this.state.name}
-                            onChange={this.onTextChange('name')}
-                        />
-                    </div>
+                        <div className = 'form__input'>
+                            <label className = 'form__label'>Playlist Name</label>
+                            <input
+                                type='text'
+                                className='text-input'
+                                placeholder='Hot Songs'
+                                autoFocus
+                                value={this.state.name}
+                                onChange={this.onTextChange('name')}
+                            />
+                        </div>
 
-                    <div className='form__input'>
-                        <label className = 'form__label'>Duration</label>
-                        <select value={this.state.duration}
-                                onChange={this.onDurationChange}
-                        >
-                            <option value='short_term'>Last 4 Weeks</option>
-                            <option value='medium_term'>Last 6 months</option>
-                            <option value='long_term'>Lifetime</option>
-                        </select>
-                    </div>
+                        <div className='form__input'>
+                            <label className = 'form__label'>Duration</label>
+                            <select value={this.state.duration}
+                                    onChange={this.onDurationChange}
+                            >
+                                <option value='short_term'>Last 4 Weeks</option>
+                                <option value='medium_term'>Last 6 months</option>
+                                <option value='long_term'>Lifetime</option>
+                            </select>
+                        </div>
 
-                    <div className = 'form__input'>
-                        <label className = 'form__label'>Number of Songs</label>
-                        <input
-                            type='number'
-                            className='text-input'
-                            placeholder="20"
-                            autoFocus
-                            value={this.state.accuracy}
-                            onChange={this.onNumberChange}
-                        />
-                    </div>
-
-
-                    <div className = 'form__input'>
-                        <button className='button'>Run Generator</button>
-                    </div>
-            </form>
+                        <div className = 'form__input'>
+                            <label className = 'form__label'>Number of Songs</label>
+                            <input
+                                type='number'
+                                className='text-input'
+                                placeholder="20"
+                                autoFocus
+                                value={this.state.accuracy}
+                                onChange={this.onNumberChange}
+                            />
+                        </div>
+                        <div className = 'form__input'>
+                            <button className='button'>Run Generator</button>
+                        </div>
+                </form>
+            </div>
         )
     }
 
