@@ -14,7 +14,7 @@ export default class SpotifyInteractor
         this.token = options["token"]
         this.duration = options["duration"]
         this.songCount = options["count"]
-        this.playListName = options["playlistName"]
+        this.playlistName = options["playlistName"]
         this.playlistVisibility = options["visibility"]
         this.playlistDescription = options["description"]
 
@@ -78,8 +78,8 @@ export default class SpotifyInteractor
         const targetURL = `https://api.spotify.com/v1/users/${this.userID}/playlists`;
 
         const defaultData = {
-            name: "Oh Ok",
-            description: "Oh Ok",
+            name: this.playlistName,
+            description: this.playlistDescription,
             public: true
         }
 

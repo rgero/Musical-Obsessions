@@ -36,6 +36,17 @@ export default class PlaylistForm extends React.Component
                     name: newValue
                 });
                 break;
+            case 'description':
+                this.setState({
+                    description: newValue
+                });
+                break;
+            case 'number':
+                console.log("Number Change")
+                this.setState({
+                    songCount: newValue
+                });
+                break;
             default:
                 break;
         }
@@ -65,7 +76,7 @@ export default class PlaylistForm extends React.Component
                 token: this.state.token,
                 duration: this.state.duration,
                 count: this.state.songCount,
-                playlistName: this.state.playlistName,
+                playlistName: this.state.name,
                 visibility: this.state.visibility,
                 description: this.state.description
             }
@@ -98,6 +109,18 @@ export default class PlaylistForm extends React.Component
                             />
                         </div>
 
+                        <div className = 'form__input'>
+                            <label className = 'form__label'>Playlist Description</label>
+                            <input
+                                type='text'
+                                className='textarea'
+                                placeholder=''
+                                autoFocus
+                                value={this.state.description}
+                                onChange={this.onTextChange('description')}
+                            />
+                        </div>
+
                         <div className='form__input'>
                             <label className = 'form__label'>Duration</label>
                             <select value={this.state.duration}
@@ -116,8 +139,8 @@ export default class PlaylistForm extends React.Component
                                 className='text-input'
                                 placeholder="20"
                                 autoFocus
-                                value={this.state.accuracy}
-                                onChange={this.onNumberChange}
+                                value={this.state.songCount}
+                                onChange={this.onTextChange("count")}
                             />
                         </div>
                         <div className = 'form__input'>
