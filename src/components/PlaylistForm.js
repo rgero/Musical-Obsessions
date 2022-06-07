@@ -11,6 +11,7 @@ export default class PlaylistForm extends React.Component
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onDurationChange = this.onDurationChange.bind(this);
+        this.onCountChange = this.onCountChange.bind(this);
         this.clearError = this.clearError.bind(this);
 
 
@@ -41,22 +42,26 @@ export default class PlaylistForm extends React.Component
                     description: newValue
                 });
                 break;
-            case 'number':
-                console.log("Number Change")
-                this.setState({
-                    songCount: newValue
-                });
-                break;
             default:
                 break;
         }
     }
 
     onDurationChange(e){
-        const value = e.target.value
+        const value = e.target.value;
         this.setState(()=>({
             duration: value
         }))
+    }
+
+    onCountChange(e)
+    {
+        const count = e.target.value;
+        if (!count || count.match(/^\d{1,}$/)) {
+            this.setState(()=>({
+                songCount: count
+            }));
+        }
     }
 
     async onSubmit(e){
@@ -135,12 +140,12 @@ export default class PlaylistForm extends React.Component
                         <div className = 'form__input'>
                             <label className = 'form__label'>Number of Songs</label>
                             <input
-                                type='number'
+                                type='text'
                                 className='text-input'
                                 placeholder="20"
                                 autoFocus
                                 value={this.state.songCount}
-                                onChange={this.onTextChange("count")}
+                                onChange={this.onCountChange}
                             />
                         </div>
                         <div className = 'form__input'>
