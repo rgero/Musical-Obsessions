@@ -71,8 +71,7 @@ export default class PlaylistForm extends React.Component
             }
 
             var interactor = new SpotifyInteractor(options);
-            await interactor.GetUserID();
-            await interactor.CreatePlaylist();
+            await interactor.RunTool();
 
 
         } else {

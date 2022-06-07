@@ -18,7 +18,7 @@ export default class SpotifyInteractor
         this.playlistVisibility = options["visibility"]
         this.playlistDescription = options["description"]
 
-        this.songList = {};
+        this.songList = [];
 
         this.userID = "";
         this.playlistID = "";
@@ -58,13 +58,20 @@ export default class SpotifyInteractor
             time_range: this.duration,
         }
         const {data} = await this.GetDataFromURL("https://api.spotify.com/v1/me/top/tracks", params)
+
+        let returnedDataList = data["items"];
+        let songIDList = [];
+        returnedDataList.forEach(song => {
+            songIDList.push(song["uri"]);
+        })
+        
+        this.songList = songIDList;
     }
 
     async CreatePlaylist()
     {
         if (this.userID === "")
         {
-            console.log("We failed here");
             return;
         }
 
@@ -80,5 +87,25 @@ export default class SpotifyInteractor
         
         // Return the Playlist ID
         this.playlistID = data["id"]
+    }
+
+    async AddSongsToPlaylist()
+    {
+        if (this.playlistID === "" || this.songList === [])
+        {
+            return; 
+        }
+
+        const targetURL = `https://api.spotify.com/v1/playlists/${this.playlistID}/tracks`
+        const targetData = {uris: this.songList};
+        await this.PostDataToURL(targetURL, targetData);
+    }
+
+    async RunTool()
+    {
+        await this.GetUserID();
+        await this.GetPopularTracks();
+        await this.CreatePlaylist();
+        await this.AddSongsToPlaylist();
     }
 }
