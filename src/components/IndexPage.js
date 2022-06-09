@@ -1,7 +1,6 @@
 import React from 'react';
-import Header from './Header';
-
 import Credentials from '../Credentials';
+
 import PublicPage from './PublicPage';
 import OptionsPage from './OptionsPage';
 

@@ -1,5 +1,5 @@
 .header {
-    background-color: $darkBlue;
+    background-color: $darkGreen;
 }
 
 .header__content {
@@ -11,7 +11,7 @@
 }
 
 .header__title {
-    color: white;
+    color: $off-white;
     text-decoration: none;
     h1 {
         margin: 0 $s-size;

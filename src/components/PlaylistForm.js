@@ -1,7 +1,6 @@
 import React from 'react'
 import ErrorModal from './ErrorModal';
 
-import SpotifyInteractor from "../tools/SpotifyInteractor";
 
 export default class PlaylistForm extends React.Component
 {
@@ -85,11 +84,7 @@ export default class PlaylistForm extends React.Component
                 visibility: this.state.visibility,
                 description: this.state.description
             }
-
-            var interactor = new SpotifyInteractor(options);
-            await interactor.RunTool();
-
-
+            this.props.onSubmit(options);
         } else {
             this.setState({error: currentError})
         }
