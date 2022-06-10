@@ -18,11 +18,12 @@
 }
 
 .modal {
-    background: $light-blue;
-    color:white;
-    max-width: 30rem;
+    background: $darkGreen;
+    color:$off-white;
+    max-width: 60rem;
     outline: none;
     padding: $l-size;
     text-align: center;
     word-break: break-word;
+    border-radius:10px !important
 }

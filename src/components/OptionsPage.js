@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './Header';
 import PlaylistForm from './PlaylistForm';
 import {withNavigate} from '../tools/WithNavigate';
 
 import SpotifyInteractor from "../tools/SpotifyInteractor";
+import ProcessingModal from './ProcessingModal';
 
 export class OptionsPage extends React.Component
 {
@@ -11,10 +12,17 @@ export class OptionsPage extends React.Component
     {
         super(props)
         this.onSubmit = this.onSubmit.bind(this);
+
+        this.state = {
+            processing: this.props.processing ? this.props.processing : false
+        }
     }
 
     async onSubmit(options)
     {
+        this.setState({
+            processing: true
+        })
         var interactor = new SpotifyInteractor(options);
         await interactor.RunTool();
         this.props.navigate('/completed')
@@ -24,8 +32,11 @@ export class OptionsPage extends React.Component
     {
         return (
             <div>
-                <Header/> 
-                <PlaylistForm token={this.props.token} onSubmit={this.onSubmit}/>
+                {this.state.processing !== false && <ProcessingModal processing={this.state.processing}/>}
+                <Header/>
+                <div className="content-container">
+                    <PlaylistForm token={this.props.token} onSubmit={this.onSubmit}/>
+                </div>
             </div>
         );
     }
