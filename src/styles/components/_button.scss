@@ -2,13 +2,14 @@
     font-size: $m-size;
     font-weight: 300;
     padding: $s-size;
-    background-color: $spotifyColor;
+    background-color: $darkGreen;
     color: $buttonTextColor;
     display: inline-block;
     text-decoration: none;
     line-height: 1;
     box-shadow: none;
     border: none;
+    border-radius: 15px;
 
 }
 
@@ -24,8 +25,8 @@
 .button--spotify
 {
     @extend .button;
-    background-color: $spotifyColor;
-    color: black;
+    background-color: $darkGreen;
+    color: $off-white;
     font-weight: bold;
     border-radius: 15px;
 }

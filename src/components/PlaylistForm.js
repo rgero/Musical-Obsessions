@@ -1,5 +1,6 @@
 import React from 'react'
 import ErrorModal from './ErrorModal';
+const moment = require('moment')
 
 
 export default class PlaylistForm extends React.Component
@@ -13,13 +14,15 @@ export default class PlaylistForm extends React.Component
         this.onCountChange = this.onCountChange.bind(this);
         this.clearError = this.clearError.bind(this);
 
+        this.defaultDescriptionString = `Created on ${moment().format("YYYY-MM-DD")}`;
+
 
         this.state = {
             name : this.props.name ? this.props.name : "Hot Songs",
             duration : this.props.duration ? this.props.duration : "short_term",
             songCount : this.props.songCount ? this.props.songCount : 20,
             visibility: this.props.visibility ? this.props.visibility : true,
-            description: this.props.description ? this.props.description : "The hottest of songs",
+            description: this.props.description ? this.props.description : this.defaultDescriptionString,
             token : this.props.token ? this.props.token : "",
         }
     }
@@ -114,7 +117,6 @@ export default class PlaylistForm extends React.Component
                             <input
                                 type='text'
                                 className='textarea'
-                                placeholder=''
                                 autoFocus
                                 value={this.state.description}
                                 onChange={this.onTextChange('description')}

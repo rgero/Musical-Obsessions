@@ -14,7 +14,7 @@ const ErrorModal = (props) =>
                 <div>
                     <h2>Error</h2>
                     <div>{props.errorMessage}</div>
-                    <div><button className='button' onClick={props.clearError}>Close</button></div>
+                    <div className="buttonLogin"><button className='button' onClick={props.clearError}>Close</button></div>
                 </div>
             }
         </Modal>

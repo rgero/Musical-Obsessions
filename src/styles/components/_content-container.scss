@@ -1,7 +1,9 @@
 .content-container {
-    margin: $m-size auto;
-    padding: 0 $m-size;
+    margin: 0 auto;
+    background-color: $off-white;
+    padding: $m-size;
     max-width: 80rem;
+    border-radius: 20px;
 }
 
 .content-navbar {

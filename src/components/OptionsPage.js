@@ -35,6 +35,9 @@ export class OptionsPage extends React.Component
                 {this.state.processing !== false && <ProcessingModal processing={this.state.processing}/>}
                 <Header/>
                 <div className="content-container">
+                    <div>
+                        Please define the options for your new playlist
+                    </div>
                     <PlaylistForm token={this.props.token} onSubmit={this.onSubmit}/>
                 </div>
             </div>

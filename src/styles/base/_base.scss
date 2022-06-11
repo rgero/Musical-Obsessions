@@ -8,8 +8,9 @@ html {
 }
 
 body {
+    background: url('/../public/img/bg.jpg');
+    background-size: cover;
     color: $dark-gray;
-    background-color: $off-white;
     font-family: Helvetica, Arial, sans-serif;
     font-size: $m-size;
     line-height: 1.6;
