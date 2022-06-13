@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Musical Obsession",
+  "name": "Musical Obsession - Create a playlist of your favorite songs",
   "icons": [
     {
       "src": "favicon.ico",

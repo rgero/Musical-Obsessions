@@ -77,13 +77,13 @@ export default class SpotifyInteractor
 
         const targetURL = `https://api.spotify.com/v1/users/${this.userID}/playlists`;
 
-        const defaultData = {
+        const playlistData = {
             name: this.playlistName,
             description: this.playlistDescription,
-            public: true
+            public: this.playlistVisibility
         }
 
-        const {data} = await this.PostDataToURL(targetURL, defaultData);
+        const {data} = await this.PostDataToURL(targetURL, playlistData);
         
         // Return the Playlist ID
         this.playlistID = data["id"]

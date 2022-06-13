@@ -13,6 +13,7 @@ export default class PlaylistForm extends React.Component
         this.onDurationChange = this.onDurationChange.bind(this);
         this.onCountChange = this.onCountChange.bind(this);
         this.clearError = this.clearError.bind(this);
+        this.updateVisibility = this.updateVisibility.bind(this);
 
         this.defaultDescriptionString = `Created on ${moment().format("YYYY-MM-DD")}`;
 
@@ -47,6 +48,14 @@ export default class PlaylistForm extends React.Component
             default:
                 break;
         }
+    }
+
+    updateVisibility(e)
+    {
+        const value = e.target.checked;
+        this.setState(()=>({
+            visibility: value
+        }))
     }
 
     onDurationChange(e){
@@ -127,10 +136,11 @@ export default class PlaylistForm extends React.Component
                             <label className = 'form__label'>Duration</label>
                             <select value={this.state.duration}
                                     onChange={this.onDurationChange}
+                                    className="list-input"
                             >
                                 <option value='short_term'>Last 4 Weeks</option>
                                 <option value='medium_term'>Last 6 months</option>
-                                <option value='long_term'>Lifetime</option>
+                                <option value='long_term'>Last year</option>
                             </select>
                         </div>
 
@@ -144,6 +154,19 @@ export default class PlaylistForm extends React.Component
                                 value={this.state.songCount}
                                 onChange={this.onCountChange}
                             />
+                        </div>
+
+                        <div className="form__checkbox">
+                            <label className="container">Make Playlist Public
+                                <input 
+                                    type="checkbox"
+                                    checked={this.state.visibility}
+                                    onChange = {this.updateVisibility}
+                                    id="visibility"
+                                />
+                                <span className="checkmark"></span>
+                            </label>
+                            
                         </div>
                         <div className = 'form__input'>
                             <button className='button'>Run Generator</button>

@@ -21,6 +21,13 @@
     align-items: center;
 }
 
+.form__checkbox
+{
+    display:flex;
+    flex-direction: row;
+    align-items: flex-end; 
+}
+
 .form__header
 {
     align-items: left;
