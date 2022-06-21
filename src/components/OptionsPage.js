@@ -24,8 +24,14 @@ export class OptionsPage extends React.Component
             processing: true
         })
         var interactor = new SpotifyInteractor(options);
-        await interactor.RunTool();
-        this.props.navigate('/completed')
+        try
+        {   
+            await interactor.RunTool();
+            this.props.navigate('/completed')
+        } catch (error) {
+            this.props.navigate('/error');
+        }
+
     }
 
     render()

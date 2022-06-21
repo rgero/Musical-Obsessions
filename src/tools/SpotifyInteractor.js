@@ -1,11 +1,4 @@
 import axios from "axios";
-/* Things I am going to need to do
-
-    -A function that gets the User's Profile ID.
-    -A function that gets the top songs
-    -A function the creates the playlist
-    -A function that adds the songs to the playlist.
-*/
 
 export default class SpotifyInteractor
 {
@@ -31,6 +24,8 @@ export default class SpotifyInteractor
                 Authorization: `Bearer ${this.token}`,
             },
             params : inputParams
+        }).catch(error => {
+            return null;
         })
         return data;
     }
@@ -104,6 +99,12 @@ export default class SpotifyInteractor
     async RunTool()
     {
         await this.GetUserID();
+
+        if (this.userID === null)
+        {
+            throw "Error validating";
+        }
+
         await this.GetPopularTracks();
         await this.CreatePlaylist();
         await this.AddSongsToPlaylist();
